@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>On-Demand Printing Bangkok | Crestec (Thailand) Co., Ltd.</title>
+<meta name="description" content="Lorem ipsum dolor sit amet — placeholder meta description pending approved wording."/>
+<link rel="canonical" href="/services/on-demand-printing/index.html"/>
+<link rel="alternate" hreflang="en" href="/services/on-demand-printing/index.html"/>
+<link rel="alternate" hreflang="th" href="/th/services/on-demand-printing/index.html"/>
+<link rel="alternate" hreflang="ja" href="/jp/services/on-demand-printing/index.html"/>
+<link rel="alternate" hreflang="zh" href="/cn/services/on-demand-printing/index.html"/>
+<link rel="alternate" hreflang="x-default" href="/services/on-demand-printing/index.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.crestec.co.th/#organization",
+      "name": "Crestec (Thailand) Co., Ltd.",
+      "foundingDate": "1995",
+      "description": "Established in Thailand in 1995. Our main focus is printing coordination, data creation, translation, quality assurance (QA/QC), and delivery. Collaborating with trusted printing partners, we ensure 100% accurate, worry-free delivery. Since 2024, we also provide rapidly growing high-quality B&W digital on-demand printing services.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.crestec.co.th/icons/createc-60h-white.svg"
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --navy:#1A2A3A;--navy2:#0F1E2D;--blue:#6699CC;--blue2:#4477AA;
+  --orange:#F5A623;--white:#fff;--off:#F7F9FC;--ink:#2C3E50;
+  --muted:#6B7A8D;--border:#E2EAF2;--r:12px;--max:1100px;--hdr:68px;
+  --cyan:#00AEEF;--magenta:#EC008C;--yellow:#FFD400;--key:#3A3A3A;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Poppins',sans-serif;color:var(--ink);background:#f4f6f8}
+
+/* ── FIXED DNA CANVAS BACKGROUND ── */
+#dnaStage{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 30%,#ffffff 0%,#DCE9F5 100%)}
+#dnaCanvas{display:block;width:100%;height:100%}
+
+#scroller{position:relative;z-index:1;height:100vh;margin-top:0;overflow-y:scroll;overflow-x:hidden;scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+#scroller::-webkit-scrollbar{display:none}
+#scroller{-ms-overflow-style:none;scrollbar-width:none}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+#hdr{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--hdr);padding:0 32px;display:flex;align-items:center;justify-content:space-between;background:rgba(15,30,45,.97);box-shadow:0 2px 24px rgba(0,0,0,.18);}
+.hdr-logo img{height:26px;min-width:90px;display:block}
+.hdr-nav{display:flex;align-items:center;gap:2px}
+.hdr-nav a{color:rgba(255,255,255,.85);font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:7px;transition:color .2s,background .2s;white-space:nowrap}
+.hdr-nav a:hover,.hdr-nav a.active{color:#fff;background:rgba(255,255,255,.12)}
+.hdr-right{display:flex;align-items:center;gap:12px}
+.lang-wrap{position:relative}
+.lang-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:12px;font-weight:600;padding:6px 11px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:background .2s}
+.lang-btn:hover{background:rgba(255,255,255,.2)}
+.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#fff;border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.12);overflow:hidden;min-width:140px}
+.lang-dropdown a{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--ink);transition:background .15s}
+.lang-dropdown a:hover{background:var(--off)}
+.lang-wrap.open .lang-dropdown{display:block}
+.btn-hdr{background:var(--orange);color:#fff;font-size:12.5px;font-weight:700;padding:8px 18px;border-radius:8px;transition:background .2s,transform .15s;white-space:nowrap}
+.btn-hdr:hover{background:#d4891a;transform:translateY(-1px)}
+
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;padding:4px;flex-shrink:0}
+.hamburger span{display:block;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-contact{display:none}
+
+.snap{scroll-snap-align:start;scroll-snap-stop:always;height:100vh;min-height:100vh;padding-top:var(--hdr);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0;background:transparent}
+#dotnav{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:9px}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(26,42,58,.2);border:1.5px solid rgba(26,42,58,.35);cursor:pointer;transition:background .2s,transform .2s}
+.dot.active{background:var(--navy);border-color:var(--navy);transform:scale(1.4)}
+.dot.dot-light{background:rgba(255,255,255,.35);border-color:rgba(255,255,255,.5)}
+.dot.dot-light.active{background:#fff;border-color:#fff}
+.sec-inner{width:100%;max-width:var(--max);padding:0 32px;position:relative;z-index:2}
+.btn-primary{display:inline-block;background:var(--orange);color:#fff;font-weight:700;font-size:14px;padding:13px 32px;border-radius:var(--r);transition:background .2s,transform .15s}
+.btn-primary:hover{background:#d4891a;transform:translateY(-2px)}
+.btn-outline-navy{display:inline-block;border:2px solid rgba(26,42,58,.35);color:var(--navy);font-weight:600;font-size:14px;padding:11px 28px;border-radius:var(--r);transition:border-color .2s,background .2s}
+.btn-outline-navy:hover{border-color:var(--navy);background:rgba(26,42,58,.06)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ── HERO ── */
+.hero-content{max-width:560px}
+.hero-eye{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue2);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.hero-eye span{display:inline-block;width:32px;height:1px;background:var(--blue2);opacity:.6}
+.hero-content h1{font-size:clamp(30px,4.4vw,52px);font-weight:800;color:var(--navy);line-height:1.12;margin-bottom:18px;letter-spacing:-.02em}
+.hero-sub{font-size:clamp(13px,1.5vw,15.5px);color:var(--muted);margin:0 0 24px;line-height:1.75;max-width:480px}
+.cmyk-row{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.cmyk-dot{width:14px;height:14px;border-radius:50%}
+.cmyk-dot.c{background:var(--cyan)}.cmyk-dot.m{background:var(--magenta)}.cmyk-dot.y{background:var(--yellow)}.cmyk-dot.k{background:var(--key)}
+.cmyk-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(26,42,58,.45);font-size:10px;letter-spacing:.12em;text-transform:uppercase;z-index:2}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(26,42,58,.45),transparent);animation:sl 1.8s ease-in-out infinite}
+@keyframes sl{0%,100%{opacity:.3;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ── ALTERNATING INFO CARDS ── */
+.split{display:flex;width:100%}
+.split.pos-left{justify-content:flex-start}
+.split.pos-right{justify-content:flex-end}
+.info-card{background:rgba(255,255,255,.92);backdrop-filter:blur(4px);border:1.5px solid var(--border);border-radius:18px;box-shadow:0 24px 64px rgba(26,42,58,.14);padding:28px;max-width:470px;width:100%}
+.info-card .card-img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px;margin-bottom:18px}
+.card-eye{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.info-card h2{font-size:clamp(19px,2.4vw,26px);font-weight:800;color:var(--navy);line-height:1.25;margin-bottom:12px}
+.info-card p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:10px}
+.info-card p:last-child{margin-bottom:0}
+.card-list{list-style:none;margin-top:6px}
+.card-list li{font-size:12.5px;color:var(--ink);line-height:1.9;padding-left:20px;position:relative}
+.card-list li::before{content:'';position:absolute;left:0;top:11px;width:8px;height:8px;border-radius:50%}
+.card-list li:nth-child(4n+1)::before{background:var(--cyan)}
+.card-list li:nth-child(4n+2)::before{background:var(--magenta)}
+.card-list li:nth-child(4n+3)::before{background:var(--yellow)}
+.card-list li:nth-child(4n+4)::before{background:var(--key)}
+.card-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--blue2);margin-top:12px}
+
+/* ── CONTACT / FOOTER ── */
+#s-contact{display:flex !important;flex-direction:column !important;justify-content:flex-start !important;align-items:center !important;background:#0F1E2D !important;height:auto !important;min-height:100vh !important;padding-top:calc(var(--hdr) + 40px) !important;padding-bottom:0 !important;width:100% !important;position:relative;z-index:20;}
+#s-contact h2{font-size:clamp(24px,4vw,40px);font-weight:800;color:#fff;margin-bottom:12px;text-align:center}
+#s-contact p.sub{font-size:15px;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto 28px;text-align:center;line-height:1.7}
+.contact-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:28px}
+.c-chip{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:12px 20px;border-radius:10px;font-size:13.5px;font-weight:600;transition:background .2s}
+.c-chip:hover{background:rgba(255,255,255,.13)}
+.contact-inner{display:flex;flex-direction:column;align-items:center;width:100%;flex:1;padding-bottom:60px}
+.ft-bar{position:relative;width:100%;background:#080F16;border-top:1px solid rgba(255,255,255,.05);padding:20px 32px 16px;}
+.ft-bar-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:28px}
+.ft-logo{margin-bottom:8px}
+.ft-logo img{height:22px;display:block}
+.ft-info{font-size:11px;color:rgba(255,255,255,.3);line-height:1.9;margin-bottom:10px}
+.ft-info a{color:rgba(255,255,255,.45);transition:color .2s}
+.ft-info a:hover{color:#fff}
+.ft-col h4{font-size:11px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.ft-col a{display:block;font-size:12px;color:rgba(255,255,255,.4);margin-bottom:8px;transition:color .2s}
+.ft-col a:hover{color:#fff}
+.ft-bottom{max-width:var(--max);margin:0 auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.ft-copy{font-size:11px;color:rgba(255,255,255,.2)}
+@media(max-width:500px){.ft-bar-inner{grid-template-columns:1fr}}
+
+/* ── MOBILE ── */
+@media(max-width:899px){
+  html,body{height:auto;overflow:auto}
+  #scroller{height:auto;overflow:visible;scroll-snap-type:none;margin-top:0}
+  .snap{height:auto;min-height:100vh;scroll-snap-align:none;scroll-snap-stop:unset;padding:calc(var(--hdr) + 40px) 0 60px}
+  #dotnav{display:none}
+  .hero-ctas{flex-direction:column;align-items:flex-start}
+  .split{justify-content:center !important}
+  .info-card{max-width:520px}
+  .hamburger{display:flex}
+  .btn-hdr{display:none}
+  .hdr-right{gap:8px}
+  .nav-contact{display:block;color:var(--orange) !important;font-weight:700 !important;border-bottom:none !important;margin-top:4px}
+  .hdr-nav{display:none;flex-direction:column;position:fixed;top:var(--hdr);left:0;right:0;background:rgba(10,20,35,.98);padding:8px 0;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:199}
+  .hdr-nav.open{display:flex}
+  .hdr-nav a{padding:12px 24px;border-radius:0;font-size:14px;border-bottom:1px solid rgba(255,255,255,.06);white-space:normal}
+  .hdr-nav a:last-child{border-bottom:none}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.scroll-line{animation:none}}
+</style>
+</head>
+<body>
+
+<div id="dnaStage" aria-hidden="true"><canvas id="dnaCanvas"></canvas></div>
+
+<nav id="dotnav" aria-label="Page Sections Navigation">
+  <div class="dot active" data-idx="0"></div>
+  <div class="dot" data-idx="1"></div>
+  <div class="dot" data-idx="2"></div>
+  <div class="dot" data-idx="3"></div>
+  <div class="dot" data-idx="4"></div>
+  <div class="dot" data-idx="5"></div>
+  <div class="dot" data-idx="6"></div>
+</nav>
+
+<header id="hdr">
+  <a href="/index.html" class="hdr-logo" aria-label="Crestec Thailand Home"><img src="/icons/createc-60h-white.svg" alt="Crestec (Thailand) Co., Ltd."/></a>
+
+  <nav class="hdr-nav" id="hdrNav" aria-label="Main Navigation">
+    <a href="#">About Us</a>
+    <a href="#">Services</a>
+    <a href="#" class="active">On-Demand Printing</a>
+    <a href="#">Industries</a>
+    <a href="#">Insights</a>
+    <a href="#s-contact" class="nav-contact" onclick="hamburger.classList.remove('open');document.getElementById('hdrNav').classList.remove('open');goTo(6);return false;">Contact Us</a>
+  </nav>
+
+  <div class="hdr-right">
+    <div class="lang-wrap" id="langWrap">
+      <div class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false"><span id="langCode">EN</span><span style="font-size:10px;opacity:.6">▼</span></div>
+      <div class="lang-dropdown" aria-label="Language Selection">
+        <a href="/services/on-demand-printing/index.html">English</a>
+        <a href="/th/services/on-demand-printing/index.html">ภาษาไทย</a>
+        <a href="/jp/services/on-demand-printing/index.html">日本語</a>
+        <a href="/cn/services/on-demand-printing/index.html">中文</a>
+      </div>
+    </div>
+    <a href="#s-contact" onclick="goTo(6);return false" class="btn-hdr">Contact Us</a>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<main id="scroller">
+
+<!-- 0 · HERO -->
+<section class="snap" id="s-hero">
+  <div class="sec-inner">
+    <div class="hero-content">
+      <div class="hero-eye"><span></span>Crestec (Thailand) · Since 1995</div>
+      <h1>Digital &amp; On-Demand Printing in Bangkok</h1>
+      <p class="hero-sub">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — placeholder pending approved wording.</p>
+      <div class="cmyk-row">
+        <div class="cmyk-dot c"></div><div class="cmyk-dot m"></div><div class="cmyk-dot y"></div><div class="cmyk-dot k"></div>
+        <span class="cmyk-label">Print is in our DNA</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#s-contact" class="btn-primary" onclick="goTo(6);return false">Request a Quote</a>
+        <a href="#s-what" class="btn-outline-navy" onclick="goTo(1);return false">Learn More</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- 1 · WHAT IS ODP — card LEFT, DNA right -->
+<section class="snap" id="s-what">
+  <div class="sec-inner">
+    <div class="split pos-left">
+      <div class="info-card reveal">
+        <img class="card-img" src="https://images.unsplash.com/photo-1562564055-71e051d33c19?auto=format&fit=crop&w=1200&q=60" alt="Digital printing placeholder"/>
+        <div class="card-eye">What It Is</div>
+        <h2>What Is On-Demand Printing?</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · BENEFITS — card RIGHT, DNA left -->
+<section class="snap" id="s-why">
+  <div class="sec-inner">
+    <div class="split pos-right">
+      <div class="info-card reveal">
+        <img class="card-img" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=60" alt="Business documents placeholder"/>
+        <div class="card-eye">Benefits</div>
+        <h2>Why Choose On-Demand?</h2>
+        <ul class="card-list">
+          <li>Lorem ipsum dolor sit amet consectetur.</li>
+          <li>Sed do eiusmod tempor incididunt ut labore.</li>
+          <li>Ut enim ad minim veniam quis nostrud.</li>
+          <li>Duis aute irure dolor in reprehenderit.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · WHAT WE PRINT — card LEFT, DNA right -->
+<section class="snap" id="s-print">
+  <div class="sec-inner">
+    <div class="split pos-left">
+      <div class="info-card reveal">
+        <img class="card-img" src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=1200&q=60" alt="Printed materials placeholder"/>
+        <div class="card-eye">Our Output</div>
+        <h2>What We Print</h2>
+        <ul class="card-list">
+          <li>Lorem ipsum manuals and user guides.</li>
+          <li>Consectetur training and seminar materials.</li>
+          <li>Adipiscing corporate reports and documents.</li>
+          <li>Eiusmod product documentation and sheets.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · JUST-IN-TIME — card RIGHT, DNA left -->
+<section class="snap" id="s-jit">
+  <div class="sec-inner">
+    <div class="split pos-right">
+      <div class="info-card reveal">
+        <img class="card-img" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=60" alt="Logistics placeholder"/>
+        <div class="card-eye">Supply Chain</div>
+        <h2>Just-In-Time Printing</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+        <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · ONE PARTNER — card LEFT, DNA right -->
+<section class="snap" id="s-workflow">
+  <div class="sec-inner">
+    <div class="split pos-left">
+      <div class="info-card reveal">
+        <img class="card-img" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=60" alt="Workflow placeholder"/>
+        <div class="card-eye">Complete Workflow</div>
+        <h2>One Partner, Complete Workflow</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — writing, translation, DTP, QA/QC, printing, delivery.</p>
+        <a class="card-link" href="#">Explore all services →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · CONTACT + FOOTER -->
+<section class="snap" id="s-contact">
+  <div class="contact-inner">
+    <div class="sec-inner" style="text-align:center">
+      <h2>Need It Printed This Week?</h2>
+      <p class="sub">Lorem ipsum dolor sit amet, consectetur adipiscing elit — placeholder pending approved wording.</p>
+      <div class="contact-chips">
+        <a class="c-chip" href="tel:027143050">02-714-3050</a>
+        <a class="c-chip" href="mailto:info@crestec.co.th">info@crestec.co.th</a>
+      </div>
+      <a href="mailto:info@crestec.co.th" class="btn-primary">Request a Quote</a>
+    </div>
+  </div>
+
+  <div class="ft-bar">
+    <div class="ft-bar-inner">
+      <div class="ft-col">
+        <div class="ft-logo"><img src="/icons/createc-60h-white.svg" alt="Crestec (Thailand) Co., Ltd."/></div>
+        <div class="ft-info">
+          Crestec (Thailand) Co., Ltd.<br/>
+          23/26-27 Sorachai Building, 14th Fl., Sukhumvit 63,<br/>
+          Klongton-Nua, Wattana, Bangkok 10110<br/>
+          Tax ID 0105538140538<br/>
+          Tel: <a href="tel:027143050">02-714-3050</a> · <a href="mailto:info@crestec.co.th">info@crestec.co.th</a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Services</h4>
+        <a href="#">Technical Documentation</a>
+        <a href="#">Translation &amp; Localization</a>
+        <a href="#">On-Demand Printing</a>
+        <a href="#">Packaging &amp; Fulfillment</a>
+      </div>
+      <div class="ft-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Insights</a>
+        <a href="/pocketalk/index.html">Pocketalk</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-copy">© 2026 Crestec (Thailand) Co., Ltd.</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+const scroller = document.getElementById('scroller')
+const sections = [...document.querySelectorAll('.snap')]
+const dots = [...document.querySelectorAll('.dot')]
+let current = 0, isScrolling = false
+
+// Mobile Nav setup
+const hamburger = document.getElementById('hamburger')
+const hdrNav = document.getElementById('hdrNav')
+hamburger.addEventListener('click', e => {
+  e.stopPropagation()
+  hamburger.classList.toggle('open')
+  hdrNav.classList.toggle('open')
+})
+document.addEventListener('click', e => {
+  if (!hdrNav.contains(e.target) && !hamburger.contains(e.target)) {
+    hamburger.classList.remove('open')
+    hdrNav.classList.remove('open')
+  }
+})
+
+function updateDots(idx) {
+  const isDark = sections[idx].id === 's-contact'
+  dots.forEach((d, i) => {
+    d.classList.toggle('dot-light', isDark)
+    d.classList.toggle('active', i === idx)
+  })
+  if (window.setDnaTarget) window.setDnaTarget(idx)
+}
+
+function goTo(idx) {
+  if (idx < 0 || idx >= sections.length) return;
+  current = idx;
+  isScrolling = true;
+  sections[idx].scrollIntoView({ behavior: 'smooth' });
+  updateDots(idx);
+  setTimeout(() => isScrolling = false, 800);
+}
+window.goTo = goTo
+
+const sectionObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = sections.indexOf(e.target);
+      if (idx !== -1 && !isScrolling) {
+        current = idx;
+        updateDots(idx);
+      }
+    }
+  });
+}, { root: scroller, threshold: 0.5 });
+sections.forEach(s => sectionObs.observe(s));
+
+const isDesktop = () => window.innerWidth >= 900
+scroller.addEventListener('wheel', e => {
+  if (!isDesktop()) return;
+  e.preventDefault();
+  if (isScrolling) return;
+  isScrolling = true;
+  if (e.deltaY > 0) goTo(Math.min(current + 1, sections.length - 1));
+  else goTo(Math.max(current - 1, 0));
+}, { passive: false })
+
+let touchY = 0
+scroller.addEventListener('touchstart', e => { touchY = e.touches[0].clientY }, { passive: true })
+scroller.addEventListener('touchend', e => {
+  if (!isDesktop()) return;
+  if (isScrolling) return;
+  const diff = touchY - e.changedTouches[0].clientY;
+  if (Math.abs(diff) < 30) return;
+  isScrolling = true;
+  if (diff > 0) goTo(Math.min(current + 1, sections.length - 1));
+  else goTo(Math.max(current - 1, 0));
+}, { passive: true })
+
+dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)))
+
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target)
+    }
+  })
+}, { root: isDesktop() ? scroller : null, threshold: .1 })
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el))
+
+const langWrap = document.getElementById('langWrap')
+document.getElementById('langBtn').addEventListener('click', e => { e.stopPropagation(); langWrap.classList.toggle('open') })
+document.addEventListener('click', () => langWrap.classList.remove('open'))
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown' || e.key === 'PageDown') goTo(Math.min(current + 1, sections.length - 1));
+  if (e.key === 'ArrowUp' || e.key === 'PageUp') goTo(Math.max(current - 1, 0))
+});
+
+/* ══════════ DNA CMYK BACKGROUND — driven by scroll-snap section ══════════ */
+(function () {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canvas = document.getElementById('dnaCanvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, dpr;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.clientWidth;
+    h = canvas.clientHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const palette = ['#00AEEF', '#EC008C', '#FFD400', '#3A3A3A']; // C M Y K
+  const rungs = 26;
+
+  const dust = [];
+  for (let i = 0; i < 60; i++) {
+    dust.push({
+      x: Math.random(), y: Math.random(),
+      r: 0.6 + Math.random() * 1.8,
+      speed: 0.02 + Math.random() * 0.05,
+      phase: Math.random() * Math.PI * 2,
+      color: palette[i % palette.length]
+    });
+  }
+
+  // Per-section targets:
+  // hero: front view (4 dots) on the right; then unfolds one step per snap,
+  // gliding to the OPPOSITE side of each card (card left → DNA right, card right → DNA left).
+  const revealTargets = [0, 0.2, 0.4, 0.6, 0.8, 1, 1];
+  const cxTargets     = [0.70, 0.72, 0.28, 0.72, 0.28, 0.72, 0.5];
+
+  let reveal = 0, revealTarget = 0;
+  let cxF = 0.70, cxTarget = 0.70;
+
+  window.setDnaTarget = function (idx) {
+    const i = Math.max(0, Math.min(idx, revealTargets.length - 1));
+    revealTarget = revealTargets[i];
+    cxTarget = cxTargets[i];
+  };
+
+  // Mobile fallback: no snap, so drive reveal by document scroll progress
+  function mobileScroll() {
+    if (window.innerWidth >= 900) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const raw = max > 0 ? window.scrollY / max : 0;
+    revealTarget = raw;
+    cxTarget = 0.5;
+  }
+  window.addEventListener('scroll', mobileScroll, { passive: true });
+
+  function lerp(a, b, k) { return a + (b - a) * k; }
+  let t = 0;
+
+  function drawFrame() {
+    ctx.clearRect(0, 0, w, h);
+
+    // ease toward section targets
+    reveal += (revealTarget - reveal) * 0.05;
+    cxF += (cxTarget - cxF) * 0.05;
+
+    const cx = w * cxF;
+    const cy = h * 0.5;
+    const fullLen = Math.min(h * 1.1, 560);
+    const helixLen = fullLen * reveal;
+    const amp = Math.min(w, h) * lerp(0.20, 0.16, reveal);
+    const tilt = lerp(0, -0.45, reveal);
+
+    for (const d of dust) {
+      const dx = d.x * w;
+      const dy = (d.y * h + Math.sin(t * d.speed * 6 + d.phase) * 6) % h;
+      ctx.beginPath();
+      ctx.arc(dx, dy, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = d.color;
+      ctx.globalAlpha = 0.10 + 0.10 * Math.sin(t + d.phase);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    const ax = Math.sin(tilt), ay = Math.cos(tilt);
+    const px = ay, py = -ax;
+
+    for (let i = 0; i < rungs; i++) {
+      const p = i / (rungs - 1);
+      const along = (p - 0.5) * helixLen;
+      const clusterAngle = (i % 4) * (Math.PI / 2) + t * 0.22;
+      const helixAngle = p * Math.PI * 3.2 + t * 0.22;
+      const angle = lerp(clusterAngle, helixAngle, reveal);
+
+      const off = Math.sin(angle) * amp;
+      const off2 = Math.cos(angle) * amp * (1 - reveal);
+      const depth = Math.cos(angle);
+
+      const baseX = cx + ax * along;
+      const baseY = cy + ay * along;
+
+      const x1 = baseX + px * off;
+      const y1 = baseY + py * off + off2;
+      const x2 = baseX - px * off;
+      const y2 = baseY - py * off - off2;
+
+      if (reveal > 0.15) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.strokeStyle = '#6699CC';
+        ctx.globalAlpha = (0.08 + 0.08 * (depth + 1) / 2) * ((reveal - 0.15) / 0.85);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+
+      drawNode(x1, y1, depth, palette[i % 4]);
+      drawNode(x2, y2, -depth, palette[(i + 2) % 4]);
+    }
+    t += 0.016;
+  }
+
+  function drawNode(x, y, depth, color) {
+    const near = (depth + 1) / 2;
+    const size = 1.6 + near * 3.2 + (1 - reveal) * 2.2;
+    const alpha = (0.18 + near * 0.32) * lerp(1.4, 1, reveal);
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.globalAlpha = Math.min(alpha, 0.6);
+    ctx.fill();
+    for (let s = 0; s < 3; s++) {
+      const a = (s / 3) * Math.PI * 2 + x * 0.05;
+      ctx.beginPath();
+      ctx.arc(x + Math.cos(a) * size * 2.2, y + Math.sin(a) * size * 2.2, size * 0.3, 0, Math.PI * 2);
+      ctx.globalAlpha = Math.min(alpha, 0.6) * 0.4;
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  if (reduceMotion) {
+    reveal = 1; revealTarget = 1;
+    drawFrame();
+  } else {
+    (function loop() {
+      drawFrame();
+      requestAnimationFrame(loop);
+    })();
+  }
+})();
+</script>
+</body>
+</html>

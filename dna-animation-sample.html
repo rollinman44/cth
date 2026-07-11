@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNA Scroll Reveal — CMYK Sample</title>
+<style>
+  :root {
+    --navy: #1A2A3A;
+    --blue: #6699CC;
+    --blue-light: #A8C6E2;
+    --blue-pale: #DCE9F5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6f8;
+    color: var(--navy);
+  }
+  header {
+    background: var(--navy);
+    color: white;
+    padding: 32px 20px;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 6px 0; font-size: 22px; }
+  header p { margin: 0; color: var(--blue-light); font-size: 14px; }
+
+  .hint {
+    text-align: center;
+    padding: 18px;
+    font-size: 14px;
+    color: #667;
+  }
+
+  /* Tall scroll region; the canvas stage stays pinned while you scroll through it */
+  .scroll-region {
+    height: 300vh;
+    position: relative;
+  }
+  .stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background: radial-gradient(ellipse at 30% 30%, #ffffff 0%, var(--blue-pale) 100%);
+    overflow: hidden;
+  }
+  canvas { display: block; width: 100%; height: 100%; }
+
+  .overlay-text {
+    position: absolute;
+    left: 6vw;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    max-width: 42%;
+  }
+  .overlay-text h2 { margin: 0 0 8px 0; font-size: 28px; color: var(--navy); }
+  .overlay-text p { margin: 0; font-size: 15px; color: #567; line-height: 1.6; }
+
+  .progress-tag {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    font-size: 12px;
+    color: #88a;
+    background: rgba(255,255,255,0.7);
+    padding: 4px 10px;
+    border-radius: 12px;
+  }
+
+  .after {
+    padding: 60px 20px;
+    text-align: center;
+    color: #667;
+    font-size: 14px;
+  }
+
+  @media (max-width: 640px) {
+    .overlay-text { max-width: 70%; }
+    .overlay-text h2 { font-size: 21px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>DNA Scroll Reveal — CMYK</h1>
+  <p>Starts as 4 dots in cross-section · unfolds to side view as you scroll · for review only</p>
+</header>
+
+<div class="hint">▼ Scroll down slowly to see the transition</div>
+
+<div class="scroll-region" id="scrollRegion">
+  <div class="stage">
+    <canvas id="dnaCanvas"></canvas>
+    <div class="overlay-text">
+      <h2>Sample headline here</h2>
+      <p>At the top: four CMYK dots slowly circling — the helix seen end-on. Scrolling turns the view sideways and the full strand unfolds.</p>
+    </div>
+    <div class="progress-tag" id="progressTag">view: front</div>
+  </div>
+</div>
+
+<div class="after">End of demo — normal page content would continue here.</div>
+
+<script>
+(function () {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const canvas = document.getElementById('dnaCanvas');
+  const ctx = canvas.getContext('2d');
+  const region = document.getElementById('scrollRegion');
+  const tag = document.getElementById('progressTag');
+  let w, h, dpr;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.clientWidth;
+    h = canvas.clientHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const palette = ['#00AEEF', '#EC008C', '#FFD400', '#3A3A3A']; // C M Y K(soft)
+  const rungs = 26;
+
+  const dust = [];
+  for (let i = 0; i < 60; i++) {
+    dust.push({
+      x: Math.random(),
+      y: Math.random(),
+      r: 0.6 + Math.random() * 1.8,
+      speed: 0.02 + Math.random() * 0.05,
+      phase: Math.random() * Math.PI * 2,
+      color: palette[i % palette.length]
+    });
+  }
+
+  // Scroll progress 0..1 through the pinned region
+  let reveal = 0;
+  function updateScroll() {
+    const rect = region.getBoundingClientRect();
+    const total = rect.height - window.innerHeight;
+    const scrolled = Math.min(Math.max(-rect.top, 0), total);
+    const raw = total > 0 ? scrolled / total : 0;
+    // ease in-out for a smoother feel
+    reveal = raw * raw * (3 - 2 * raw);
+    tag.textContent = raw < 0.15 ? 'view: front' : (raw > 0.85 ? 'view: side' : 'view: turning…');
+  }
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  updateScroll();
+
+  function lerp(a, b, k) { return a + (b - a) * k; }
+
+  let t = 0;
+
+  function drawFrame() {
+    ctx.clearRect(0, 0, w, h);
+
+    const cx = w * 0.66;
+    const cy = h * 0.5;
+    const fullLen = Math.min(h * 1.1, 560);
+    const helixLen = fullLen * reveal;                 // 0 = flat cross-section
+    const amp = Math.min(w, h) * lerp(0.20, 0.16, reveal); // slightly bigger circle in front view
+    const tilt = lerp(0, -0.45, reveal);               // straight-on first, diagonal later
+
+    // dust
+    for (const d of dust) {
+      const dx = d.x * w;
+      const dy = (d.y * h + Math.sin(t * d.speed * 6 + d.phase) * 6) % h;
+      ctx.beginPath();
+      ctx.arc(dx, dy, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = d.color;
+      ctx.globalAlpha = 0.10 + 0.10 * Math.sin(t + d.phase);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    const ax = Math.sin(tilt), ay = Math.cos(tilt);
+    const px = ay, py = -ax;
+
+    for (let i = 0; i < rungs; i++) {
+      const p = i / (rungs - 1);
+      const along = (p - 0.5) * helixLen;
+
+      // In front view (reveal=0) angles cluster into 4 groups => 4 visible dots.
+      // In side view (reveal=1) angles spread along the strand => helix.
+      const clusterAngle = (i % 4) * (Math.PI / 2) + t * 0.22;
+      const helixAngle = p * Math.PI * 3.2 + t * 0.22;
+      const angle = lerp(clusterAngle, helixAngle, reveal);
+
+      const off = Math.sin(angle) * amp;
+      const off2 = Math.cos(angle) * amp * (1 - reveal); // vertical offset only in front view (true circle)
+      const depth = Math.cos(angle);
+
+      const baseX = cx + ax * along;
+      const baseY = cy + ay * along;
+
+      const x1 = baseX + px * off;
+      const y1 = baseY + py * off + off2;
+      const x2 = baseX - px * off;
+      const y2 = baseY - py * off - off2;
+
+      // rungs fade in only as the side view appears
+      if (reveal > 0.15) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.strokeStyle = '#6699CC';
+        ctx.globalAlpha = (0.08 + 0.08 * (depth + 1) / 2) * ((reveal - 0.15) / 0.85);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+
+      const c1 = palette[i % 4];
+      const c2 = palette[(i + 2) % 4];
+      drawNode(x1, y1, depth, c1);
+      drawNode(x2, y2, -depth, c2);
+    }
+
+    t += 0.016;
+  }
+
+  function drawNode(x, y, depth, color) {
+    const near = (depth + 1) / 2;
+    const size = 1.6 + near * 3.2 + (1 - reveal) * 2.2; // dots a bit larger in front view
+    const alpha = (0.18 + near * 0.32) * lerp(1.4, 1, reveal); // slightly stronger when only 4 dots
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.globalAlpha = Math.min(alpha, 0.6);
+    ctx.fill();
+
+    for (let s = 0; s < 3; s++) {
+      const a = (s / 3) * Math.PI * 2 + x * 0.05;
+      ctx.beginPath();
+      ctx.arc(x + Math.cos(a) * size * 2.2, y + Math.sin(a) * size * 2.2, size * 0.3, 0, Math.PI * 2);
+      ctx.globalAlpha = Math.min(alpha, 0.6) * 0.4;
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  if (reduceMotion) {
+    // Static fallback: show the final side view as one still frame
+    reveal = 1;
+    drawFrame();
+  } else {
+    (function loop() {
+      drawFrame();
+      requestAnimationFrame(loop);
+    })();
+  }
+})();
+</script>
+
+</body>
+</html>
